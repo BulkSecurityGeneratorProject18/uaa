@@ -1,0 +1,35 @@
+application:
+  security:
+    authentication:
+      jwt:
+        base64-secret: NGQzOWRlMGY5MjFhYjMxZmMwZTY2ZTliMjA5ODQwOWVjMTMzNzk1ZDkwYWFiN2YwNTI4MWU5NDc0ZmEwMDIwNDQ2NGNkOGNiMWM3Y2I3YzllNTYwMjdmYjIwYWIxNjYwZTg3ZGY3YTIzZTdkYzdiMTJiMTk2ZGI5NzliZTExZTI
+        accessTokenExpiration: 86400
+        refreshTokenExpiration: 2592000
+    clientAuthorization:
+      clientId: jwt
+      clientSecret: changeit
+
+uaa:
+  key-store:
+    name: config/tls/keystore.p12
+    password: password
+    alias: selfsigned
+  web-client-configuration:
+    accessTokenValidityInSeconds: 300
+    refreshTokenValidityInSeconds: 604800
+    client-id: web_app
+    secret: changeit
+server:
+  port: 8090
+
+spring:
+  datasource:
+    url: jdbc:mysql://localhost:8087/security?useSSL=false
+    username: user
+    password: password
+  jpa:
+    hibernate:
+      ddl-auto: create-drop
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.MySQL5Dialect
